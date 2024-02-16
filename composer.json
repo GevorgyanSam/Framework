@@ -1,0 +1,22 @@
+{
+    "name": "gevorgyansam/framework",
+    "description": "Framework",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "GevorgyanSam",
+            "email": "SamvelGevorgyanPC@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files": [
+            "app/Kernel/Helpers/helper.php"
+        ]
+    },
+    "minimum-stability": "stable",
+    "require": {}
+}
