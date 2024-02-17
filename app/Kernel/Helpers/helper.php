@@ -89,3 +89,16 @@ function view(string $path, array $vars): void
     extract($vars);
     require base_path("resources/views/{$path}.view.php");
 }
+
+/**
+ * Gets the value of the specified environment variable or returns a default value.
+ * 
+ * @param string $name
+ * @param string $default
+ * @return string
+ */
+function env(string $name, string $default = ""): string
+{
+    $name = strtoupper($name);
+    return $_ENV["{$name}"] ?? $default;
+}
