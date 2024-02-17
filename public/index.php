@@ -6,6 +6,7 @@ ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
 use App\Kernel\Core\Router\Route;
+use App\Providers\Kernel as Providers;
 use Dotenv\Dotenv;
 
 require __DIR__ . "/../vendor/autoload.php";
@@ -13,6 +14,6 @@ require __DIR__ . "/../vendor/autoload.php";
 $dotenv = Dotenv::createImmutable(base_path());
 $dotenv->load();
 
-require base_path("routes/web.php");
+Providers::boot();
 
 Route::load();
