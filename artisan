@@ -2,14 +2,12 @@
 
 declare(strict_types=1);
 
+use App\Kernel\Core\Console\Console;
+
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
 require __DIR__ . "/vendor/autoload.php";
 require base_path("bootstrap/app.php");
 
-$path = base_path("public");
-$url = env("app_url");
-$command = "/usr/bin/php -S {$url} -t {$path}";
-
-shell_exec($command);
+Console::handle($argv);
