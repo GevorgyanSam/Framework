@@ -2,6 +2,8 @@
 
 namespace App\Kernel\Core\Console;
 
+use App\Console\Kernel;
+
 class Console
 {
     private static array $args = [];
@@ -15,15 +17,23 @@ class Console
     private static function boot()
     {
         if (!isset(self::$args[1])) {
-            echo "Undefined Command";
+            $commands = Kernel::$register;
+            foreach ($commands as $command) {
+                wrap($command);
+            }
             return;
         }
         $argument = strtolower(self::$args[1]);
-        if ($argument === "serve") {
-            $path = base_path("public");
-            $url = env("app_url");
-            $command = "/usr/bin/php -S {$url} -t {$path}";
-            shell_exec($command);
+        $commands = Kernel::$register;
+        $found = false;
+        foreach ($commands as $command) {
+            if ($command::$command == $argument) {
+                $found = true;
+                $command::handle();
+            }
+        }
+        if (!$found) {
+            throw new \InvalidArgumentException("Undefined command '{$argument}'");
         }
     }
 }
