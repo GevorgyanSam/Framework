@@ -8,11 +8,13 @@ use PDOException;
 
 class Schema
 {
-    public static string $query;
+    public static string $query = "";
 
     public static function create(string $table, callable $callable): void
     {
-        $columns = $callable();
+        $builder = new TableBuilder;
+        $callable($builder);
+        $columns = $builder->getQuery();
         self::$query = "CREATE TABLE IF NOT EXISTS $table ($columns);";
         self::exec();
     }
@@ -23,7 +25,7 @@ class Schema
         self::exec();
     }
 
-    private static function exec()
+    private static function exec(): void
     {
         /* @var PDO $db */
         $db = Container::resolve(Database::class);
