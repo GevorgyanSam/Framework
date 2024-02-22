@@ -152,3 +152,15 @@ if (!function_exists("getMigrations")) {
         return $migrations;
     }
 }
+
+/**
+ * Get current date.
+ *
+ * @return string
+ */
+if (!function_exists("now")) {
+    function now(): string
+    {
+        return date('Y-m-d H:i:s');
+    }
+}

@@ -11,6 +11,7 @@ Framework is a lightweight and flexible PHP framework designed to streamline the
 - **Simplified Console Commands:** CLI tools for easy management and scaffolding of your application.
 - **Providers:** Easy-to-use providers for integrating additional functionality into your application.
 - **Manage Database:** Create and drop tables by using query builders and use them by CLI tool.
+- **Models:** Simplified ORM for defining and interacting with database models.
 
 ## Getting Started
 

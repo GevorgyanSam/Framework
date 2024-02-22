@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 class ExampleController
 {
-    public function index()
+    public function index(): void
     {
         $var = "Its Working";
-        return view("example", ["test" => $var]);
+        view("example", ["test" => $var]);
     }
 }
