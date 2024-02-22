@@ -4,10 +4,10 @@ namespace App\Console\Commands;
 
 use App\Kernel\Contract\Console\CommandInterface;
 
-class DbFlushCommand implements CommandInterface
+class DbDownCommand implements CommandInterface
 {
-    public static string $command = "db:flush";
-    public static string $description = "Drop all tables";
+    public static string $command = "db:down";
+    public static string $description = "Drop tables";
     public static function handle(): void
     {
         $migrations = getMigrations();

@@ -144,7 +144,7 @@ if (!function_exists("wrap")) {
 if (!function_exists("getMigrations")) {
     function getMigrations(): array
     {
-        $directory = base_path('database/migrations/*');
+        $directory = base_path('database/tables/*');
         $migrations = [];
         foreach (glob($directory) as $migration) {
             $migrations[] = require $migration;
