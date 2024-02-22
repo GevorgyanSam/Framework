@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Tables;
+
 use App\Kernel\Contract\Database\MigrationInterface;
 use App\Kernel\Core\Database\Schema;
 use App\Kernel\Core\Database\TableBuilder;

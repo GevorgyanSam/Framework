@@ -6,6 +6,11 @@
  * @param mixed $value
  * @return void
  */
+
+use App\Kernel\Core\Container\Container;
+use Database\Factory\Kernel;
+use Faker\Factory;
+
 if (!function_exists("dump")) {
     function dump(mixed $value): void
     {
@@ -162,5 +167,17 @@ if (!function_exists("now")) {
     function now(): string
     {
         return date('Y-m-d H:i:s');
+    }
+}
+
+/**
+ * Get faker instance.
+ *
+ * @return object
+ */
+if (!function_exists("fake")) {
+    function fake(): object
+    {
+        return Container::resolve(Factory::class);
     }
 }
