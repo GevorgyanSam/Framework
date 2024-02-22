@@ -37,8 +37,8 @@ if (!function_exists("dd")) {
  * @param mixed $value
  * @return void
  */
-if (!function_exists("dumpd")) {
-    function dumpd(mixed $value): void
+if (!function_exists("dumpObj")) {
+    function dumpObj(mixed $value): void
     {
         echo "<pre>";
         var_dump($value);
@@ -52,8 +52,8 @@ if (!function_exists("dumpd")) {
  * @param mixed $value
  * @return void
  */
-if (!function_exists("ddd")) {
-    function ddd(mixed $value): void
+if (!function_exists("ddObj")) {
+    function ddObj(mixed $value): void
     {
         echo "<pre>";
         var_dump($value);
@@ -100,7 +100,7 @@ if (!function_exists("view")) {
     function view(string $path, array $vars): void
     {
         extract($vars);
-        require base_path("resources/views/{$path}.view.php");
+        require base_path("resources/views/$path.view.php");
     }
 }
 
@@ -115,7 +115,7 @@ if (!function_exists("env")) {
     function env(string $name, string $default = ""): string
     {
         $name = strtoupper($name);
-        return $_ENV["{$name}"] ?? $default;
+        return $_ENV["$name"] ?? $default;
     }
 }
 
@@ -126,8 +126,29 @@ if (!function_exists("env")) {
  * @return void
  */
 if (!function_exists("wrap")) {
-    function wrap(string $command): void
+    function wrap(string $title, string $description): void
     {
-        echo "| " . $command::$command . " | " . $command::$description . " |" . PHP_EOL;
+        $sentence = "| " . $title . " | " . $description . " |" . PHP_EOL;
+        $length = strlen($sentence) - 1;
+        echo str_repeat('~', $length) . PHP_EOL;
+        echo $sentence;
+        echo str_repeat('~', $length) . PHP_EOL;
+    }
+}
+
+/**
+ * Get migrations.
+ *
+ * @return array
+ */
+if (!function_exists("getMigrations")) {
+    function getMigrations(): array
+    {
+        $directory = base_path('database/migrations/*');
+        $migrations = [];
+        foreach (glob($directory) as $migration) {
+            $migrations[] = require $migration;
+        }
+        return $migrations;
     }
 }

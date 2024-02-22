@@ -19,7 +19,7 @@ class Console
         if (!isset(self::$args[1])) {
             $commands = Kernel::$register;
             foreach ($commands as $command) {
-                wrap($command);
+                wrap($command::$command, $command::$description);
             }
             return;
         }
