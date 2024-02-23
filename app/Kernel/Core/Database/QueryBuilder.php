@@ -3,6 +3,7 @@
 namespace App\Kernel\Core\Database;
 
 use App\Kernel\Core\Container\Container;
+use Exception;
 use PDO;
 use PDOException;
 
@@ -40,7 +41,7 @@ trait QueryBuilder
      *
      * @return int|string
      */
-    public function save(): int|string
+    public static function save(): int|string
     {
         $table = self::$table;
         $primaryKey = self::$primaryKey;
@@ -56,6 +57,29 @@ trait QueryBuilder
         } catch (PDOException $e) {
             die($e->getMessage());
         }
+    }
+
+    /**
+     * Saves the provided data to the database.
+     *
+     * @param array $properties
+     * @return int|string
+     */
+    public static function create(array $properties): int|string
+    {
+        try {
+            $table = static::$table;
+            foreach ($properties as $key => $value) {
+                if (in_array($key, static::$fillable)) {
+                    static::$properties[$key] = $value;
+                } else {
+                    throw new Exception("Undefined column '$key' in $table table");
+                }
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+        return static::save();
     }
 
     /**

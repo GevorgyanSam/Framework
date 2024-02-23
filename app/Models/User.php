@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Kernel\Core\Database\Factory;
 use App\Kernel\Core\Database\Model;
 use App\Kernel\Core\Database\QueryBuilder;
 
 class User extends Model
 {
-    use QueryBuilder;
+    use QueryBuilder, Factory;
 
     protected static string $table = 'users';
     protected static string $primaryKey = 'id';
