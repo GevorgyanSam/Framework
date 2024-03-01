@@ -27,8 +27,8 @@ To get started with Framework, follow these steps:
    
 3. Build application:
    ```bash
-   docker compose up -d
+   docker compose up -d --build
    # or
-   docker-compose up -d
+   docker-compose up -d --build
 
-Your application is now running! Visit http://localhost:8088 in your web browser to see it in action.
+Your application is now running! Visit http://localhost:8080 in your web browser to see it in action.
