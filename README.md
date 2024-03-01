@@ -24,17 +24,11 @@ To get started with Framework, follow these steps:
 2. Navigate to the project directory:
    ```bash
    cd ./Framework
-
-3. Setup your .env file:
+   
+3. Build application:
    ```bash
-   cp .env.example .env
+   docker compose up -d
+   # or
+   docker-compose up -d
 
-4. Install dependencies using Composer:
-   ```bash
-   composer install
-
-5. Start the server:
-   ```bash
-   php artisan serve
-
-Your application is now running! Visit http://localhost:8000 in your web browser to see it in action.
+Your application is now running! Visit http://localhost:8088 in your web browser to see it in action.
