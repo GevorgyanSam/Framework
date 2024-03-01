@@ -2,6 +2,3 @@
 /composer.lock
 /.idea
 /.env
-/.vagrant
-/*.log
-/*.html
