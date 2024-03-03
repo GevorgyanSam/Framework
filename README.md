@@ -23,7 +23,7 @@ To get started with Framework, follow these steps:
 
 2. Navigate to the project directory:
    ```bash
-   cd ./Framework
+   cd ./Framework/docker
    
 3. Build application:
    ```bash
