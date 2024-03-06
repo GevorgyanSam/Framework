@@ -6,10 +6,24 @@ WORKDIR /var/www/app
 
 COPY . .
 
-RUN chmod +x docker/boot.sh && \
-    docker/boot.sh && \
-    chown -R www-data:www-data /var/www/app && \
-    chmod -R 755 /var/www/app
+# Update system
+RUN apt update && \
+    apt full-upgrade -y && \
+    apt autoremove -y && \
+    apt autoclean
+
+# Install dependencies
+RUN apt install -y software-properties-common apache2 nano && \
+    add-apt-repository ppa:ondrej/php && \
+    apt install -y composer php php-curl php-cli php-json php-zip php-mbstring php-xml php-mysql php-imagick php-gd
+
+# Configure server
+RUN cp /var/www/app/docker/app.conf /etc/apache2/sites-available && \
+    cd /etc/apache2/sites-available && \
+    a2dissite 000-default.conf && \
+    a2ensite app.conf && \
+    service apache2 restart && \
+    chmod -R 777 /var/www/app
 
 EXPOSE 80
 

@@ -25,10 +25,14 @@ To get started with Framework, follow these steps:
    ```bash
    cd ./Framework/docker
    
-3. Build application:
+3. Build containers:
    ```bash
-   docker compose up -d --build
-   # or
    docker-compose up -d --build
+
+4. Build application:
+   ```bash
+   docker-compose exec app composer install
+   docker-compose exec app cp .env.example .env
+   ```
 
 Your application is now running! Visit http://localhost:8080 in your web browser to see it in action.
