@@ -14,7 +14,7 @@ services:
     networks:
       - network
     volumes:
-      - /home/developer/Projects/Framework:/var/www/app
+      - ${LOCAL_PATH}:/var/www/app
   db:
     container_name: ${PREFIX}-db
     restart: unless-stopped
